@@ -9,18 +9,18 @@ const usermodel = require("./models/user_model");
 app.use(express.json());
 
 app.use("/api", router);
-cron.schedule("0 */1 * * *", async () => {
-  const enumvalue = ["Y", "N", "B"];
+cron.schedule(" 0 */1 * * *", async () => {
+  const enumvalue=["Y","N"]
+  const statusofuser = await usermodel.find({ eStatus: {$in:["Y","N"]} });
 
-  const updateMany = await usermodel.updateMany(
-    { _id: { $exists: true } },
-    {
-      $set: {
-        eStatus: enumvalue[Math.floor(Math.random() * enumvalue.length)],
-      },
-    },
-  );
-  console.log(updateMany);
+ 
+  for (const user of statusofuser) {
+   
+    const cIndex = enumvalue.indexOf(user.eStatus);
+    const nIndex= (cIndex + 1) % enumvalue.length; 
+
+    await usermodel.updateOne({ _id: user._id }, { $set: { eStatus: enumvalue[nIndex] } });
+  }
 });
 
 app.listen(config.PORT, () => {
