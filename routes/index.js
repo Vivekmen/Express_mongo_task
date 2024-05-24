@@ -5,10 +5,13 @@ const carroute=require('./car_routes');
 const sellerroute=require('./seller_routes');
 const userroute=require('./user_routes')
 const transaction=require('./transaction_routes');
+const status=require('./status_routes')
 route.use('/v1/brand', brandroute);
 route.use('/v1/car',carroute);
 route.use('/v1/seller',sellerroute);
 route.use('/v1/user',userroute);
 route.use('/v1/transaction',transaction)
+route.use('/v1/status',status)
+
 
 module.exports = route;

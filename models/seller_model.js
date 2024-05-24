@@ -10,12 +10,12 @@ const sellerSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    iCars:
+    aCarsId:[
       {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Car",
       },
-    
+    ]
   },
   { timestamps: true }
 );

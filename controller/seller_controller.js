@@ -3,13 +3,16 @@ const Seller = require("../models/seller_model");
 
 exports.addSeller = async (req, res, next) => {
   try {
-  const { sSellerName, sCity, sCars } = req.body;
-  const Carfound = await Car.findOne({ sCarName: sCars });
+  const { sSellerName, sCity, aCarsId } = req.body;
+  
+  const Carfound = await Car.find({ _id: {$in:aCarsId} });
+  
+  
     if (Carfound) {
       const sellerdata = await Seller.create({
         sSellerName,
         sCity,
-        iCars: Carfound._id,
+        aCarsId: aCarsId,
       });
       return res.status(200).json({
         message: "seller add successfully",

@@ -6,6 +6,7 @@ exports.checkTransaction=async (req,res,next)=>{
 
     try {
         const {iCustomerId,iCarsId,iSellerId}=req.body;
+        
         if (!iCustomerId||!iCarsId||!iSellerId) {
           return res.status(404).json({ sMessage: "Please Fill All The Fields!" });
         }

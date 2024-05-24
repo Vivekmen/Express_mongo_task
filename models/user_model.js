@@ -14,6 +14,10 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    eStatus:{
+      type:String,
+      enum:["Y","N","B"]
+    }
   },
   { timestamps: true }
 );
