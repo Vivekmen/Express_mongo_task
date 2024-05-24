@@ -19,6 +19,7 @@ cron.schedule(" 0 */1 * * *", async () => {
     const cIndex = enumvalue.indexOf(user.eStatus);
     const nIndex= (cIndex + 1) % enumvalue.length; 
  //this is corn
+ const vivek=10;
     await usermodel.updateOne({ _id: user._id }, { $set: { eStatus: enumvalue[nIndex] } });
   }
 });
